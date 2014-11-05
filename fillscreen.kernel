@@ -1,2 +1,13 @@
-ldc $7, 0
-sw $7, $1+$2
+ldc $5, 0
+add $3, $0, $1
+add $4, $0, $2
+sw
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
