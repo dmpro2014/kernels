@@ -1,0 +1,6 @@
+nop
+nop
+ldc $5, 0
+add $3, $0, $1
+add $4, $0, $2
+sw

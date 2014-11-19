@@ -1,0 +1,6 @@
+ldc $7, 0 ; Load framebuffer offset
+add $4, $7, $2 ; Setup write address
+slt $6, $0, $7 ; Enable masking
+add $5, $0, $0 ; Reset register
+? addi $5, $0, 0b0000011111111111 ; Conditionally write red
+sw
