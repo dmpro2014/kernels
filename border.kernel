@@ -30,8 +30,7 @@ and $10, $10, $11
 slt $11, $8, $14
 and $10, $10, $11
 
-or $mask, $12, $10
-add $12, $0, $mask
+or $12, $12, $10
 
 ; Draw right line of box
 sub $9, $7, $14 ; equal
@@ -47,8 +46,7 @@ and $10, $10, $11
 slt $11, $8, $14
 and $10, $10, $11
 
-or $mask, $12, $10
-add $12, $0, $mask
+or $12, $12, $10
 
 ; Draw upper line of box
 sub $9, $8, $13 ; equal
@@ -64,8 +62,7 @@ and $10, $10, $11
 slt $11, $7, $14 ; Check x-offset
 and $10, $10, $11
 
-or $mask, $12, $10
-add $12, $0, $mask
+or $12, $12, $10
 
 ; Draw lower line of box
 sub $9, $8, $14 ; equal
@@ -81,8 +78,9 @@ and $10, $10, $11
 slt $11, $7, $14 ; Check x-offset
 and $10, $10, $11
 
-or $mask, $12, $10
-add $12, $0, $mask
+or $12, $12, $10
+
+add $mask, $0, $12
 
 ? add $lsu_data, $0, $15 ; alpha
 
