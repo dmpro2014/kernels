@@ -1,0 +1,21 @@
+addi $15, $0, 0b111111 ; 63 bitmask
+and $7, $15, $id_lo ; x value
+srl $8, $id_lo, 6 ; y value
+sub $14, $15, $8 ; negative y value
+
+addi $lsu_data, $0, 0 ; Default to white
+
+sub $9, $7, $8 ; equal
+slt $10, $9, $0 ; diff less than zero
+slt $11, $0, $9 ; diff greater than zero
+xor $mask, $10, $11
+? addi $lsu_data, $0, 0xffff ; black
+
+sub $9, $14, $7 ; equal
+slt $10, $9, $0 ; diff less than zero
+slt $11, $0, $9 ; diff greater than zero
+xor $mask, $10, $11
+? addi $lsu_data, $0, 0xffff ; black
+
+add $address_lo, $0, $id_lo
+sw
