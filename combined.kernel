@@ -1,0 +1,105 @@
+addi $15, $0, 0b111111 ; 63 bitmask
+addi $14, $0, 64 ; width & height
+and $7, $15, $id_lo ; x value
+srl $8, $id_lo, 6 ; y value
+
+addi $lsu_data, $0, 0x1040 ; Default to red
+
+ldc $13, 10 ; Offset from edges
+sub $14, $14, $13 ; offset from opposite edges
+
+add $12, $0, $0 ; shadow mask - mask is write only
+
+; Draw left line of box
+sub $9, $7, $13 ; equal
+slt $10, $9, $0 ; diff less than zero
+slt $11, $0, $9 ; diff greater than zero
+or $10, $10, $11
+addi $11, $0, 1
+sub $10, $11, $10
+
+slt $11, $13, $8
+and $10, $10, $11
+
+slt $11, $8, $14
+and $10, $10, $11
+
+or $12, $12, $10
+
+; Draw right line of box
+sub $9, $7, $14 ; equal
+slt $10, $9, $0 ; diff less than zero
+slt $11, $0, $9 ; diff greater than zero
+or $10, $10, $11
+addi $11, $0, 1
+sub $10, $11, $10
+
+slt $11, $13, $8
+and $10, $10, $11
+
+slt $11, $8, $14
+and $10, $10, $11
+
+or $12, $12, $10
+
+; Draw upper line of box
+sub $9, $8, $13 ; equal
+slt $10, $9, $0 ; diff less than zero
+slt $11, $0, $9 ; diff greater than zero
+or $10, $10, $11
+addi $11, $0, 1
+sub $10, $11, $10
+
+slt $11, $13, $7 ; Check x-offset
+and $10, $10, $11
+
+slt $11, $7, $14 ; Check x-offset
+and $10, $10, $11
+
+or $12, $12, $10
+
+; Draw lower line of box
+sub $9, $8, $14 ; equal
+slt $10, $9, $0 ; diff less than zero
+slt $11, $0, $9 ; diff greater than zero
+or $10, $10, $11
+addi $11, $0, 1
+sub $10, $11, $10
+
+slt $11, $13, $7 ; Check x-offset
+and $10, $10, $11
+
+slt $11, $7, $14 ; Check x-offset
+and $10, $10, $11
+
+or $12, $12, $10
+
+; cross 1
+sub $9, $7, $8 ; equal
+slt $10, $9, $0 ; diff less than zero
+slt $11, $0, $9 ; diff greater than zero
+or $10, $10, $11
+addi $11, $0, 1
+sub $10, $11, $10
+
+or $12, $12, $10
+
+; cross 2
+addi $13, $0, 0b111111 ; 63 bitmask
+sub $14, $13, $8 ; negative y value
+
+sub $9, $14, $7 ; equal
+slt $10, $9, $0 ; diff less than zero
+slt $11, $0, $9 ; diff greater than zero
+or $10, $10, $11
+addi $11, $0, 1
+sub $10, $11, $10
+
+or $12, $12, $10
+
+add $mask, $0, $12 ; Store mask value
+
+? addi $lsu_data, $0, 0xffff ; color, blue?
+
+add $address_lo, $0, $id_lo
+sw
