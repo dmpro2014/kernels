@@ -1,9 +1,9 @@
-addi $15, $0, 0b111111 ; 63 bitmask
-addi $14, $0, 64 ; width & height
+ldi $15, 0b111111 ; 63 bitmask
+ldi $14, 64 ; width & height
 and $7, $15, $id_lo ; x value
 srl $8, $id_lo, 6 ; y value
 
-addi $lsu_data, $0, 0b0000011111111111 ; Default to red
+ldi $lsu_data, 0b0000011111111111 ; Default to red
 
 add $12, $0, $0 ; shadow mask - mask is write only
 
@@ -15,7 +15,7 @@ sub $9, $7, $13 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 slt $11, $13, $8
@@ -31,7 +31,7 @@ sub $9, $7, $14 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 slt $11, $13, $8
@@ -47,7 +47,7 @@ sub $9, $8, $13 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 slt $11, $13, $7 ; Check x-offset
@@ -63,7 +63,7 @@ sub $9, $8, $14 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 slt $11, $13, $7 ; Check x-offset
@@ -85,7 +85,7 @@ sub $9, $7, $13 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 slt $11, $13, $8
@@ -101,7 +101,7 @@ sub $9, $7, $14 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 slt $11, $13, $8
@@ -117,7 +117,7 @@ sub $9, $8, $13 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 slt $11, $13, $7 ; Check x-offset
@@ -133,7 +133,7 @@ sub $9, $8, $14 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 slt $11, $13, $7 ; Check x-offset
@@ -149,7 +149,7 @@ sub $9, $7, $8 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 or $12, $12, $10
@@ -162,14 +162,15 @@ sub $9, $14, $7 ; equal
 slt $10, $9, $0 ; diff less than zero
 slt $11, $0, $9 ; diff greater than zero
 or $10, $10, $11
-addi $11, $0, 1
+ldi $11, 1
 sub $10, $11, $10
 
 or $12, $12, $10
 
-add $mask, $0, $12 ; Store mask value
+mv $mask, $12 ; Store mask value
 
-? addi $lsu_data, $0, 0xffff ; color, blue?
+? ldi $lsu_data, 0xffff ; color, blue?
 
-add $address_lo, $0, $id_lo
+ldc $10, 5
+add $address_lo, $10, $id_lo
 sw
