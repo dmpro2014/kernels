@@ -1,8 +1,6 @@
-nop
-nop
-addi $5, $0, 0b0000011111111111 ; load red
-add $4, $0, $2 ; setup address
-addi $7, $0, 0b0000000001000000 ; 
-and $6, $7, $2 ; enable maskin if id % 64
-? addi $5, $0, 0b1111100000011111 ; load green conditionally
+ldi $data, 0b0000011111111111 ; load red
+mv $address_lo, $id_lo ; setup address
+ldi $7, 0b0000000001000000 ; 
+and $mask, $7, $id_lo ; enable maskin if id % 64
+? ldi $data, 0b1111100000011111 ; load green conditionally
 sw
