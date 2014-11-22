@@ -1,0 +1,18 @@
+srl $7, $id_lo, 12 ; Y value
+sll $9, $id_hi, 4
+add $7, $7, $9
+addi $8, $0, 0b1111111111100000
+addi $11, $0, 0b00000
+sub $11, $11, $7
+addi $12, $0, 0b111111
+sll $8, $7, 1
+sub $12, $12, $8
+addi $13, $0, 0b11111
+sub $13, $13, $7
+sll $11, $11, 11
+sll $12, $12, 5
+add $10, $11, $12
+add $lsu_data, $10, $13
+add $address_hi, $0, $id_hi
+add $address_lo, $0, $id_lo
+sw
