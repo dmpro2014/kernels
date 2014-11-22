@@ -3,7 +3,7 @@ ldi $14, 64 ; width & height
 and $7, $15, $id_lo ; x value
 srl $8, $id_lo, 6 ; y value
 
-ldi $lsu_data, 0b0000011111111111 ; Default to red
+ldi $data, 0b0000011111111111 ; Default to red
 
 add $12, $0, $0 ; shadow mask - mask is write only
 
@@ -169,7 +169,7 @@ or $12, $12, $10
 
 mv $mask, $12 ; Store mask value
 
-? ldi $lsu_data, 0xffff ; color, blue?
+? ldi $data, 0xffff ; color, blue?
 
 ldc $10, 5
 add $address_lo, $10, $id_lo

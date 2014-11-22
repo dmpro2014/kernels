@@ -1,5 +1,5 @@
-ldc $lsu_data, 0
-sub $lsu_data, $lsu_data, $id_lo
+ldc $data, 0
+sub $data, $data, $id_lo
 mv $address_lo, $id_lo
 mv $address_hi, $id_hi
 sw
