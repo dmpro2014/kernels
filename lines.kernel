@@ -1,0 +1,8 @@
+ldc $10, 0
+ldc $11, 1
+srl $mask, $id_lo, 10
+mv $data, $10
+? mv $data, $11
+mv $address_lo, $id_lo
+mv $address_hi, $id_hi
+sw

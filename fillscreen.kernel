@@ -1,13 +1,4 @@
-ldc $5, 0
-add $3, $0, $1
-add $4, $0, $2
+ldc $data, 0
+mv $address_lo, $id_lo
+mv $address_hi, $id_hi
 sw
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop

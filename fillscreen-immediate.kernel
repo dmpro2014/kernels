@@ -1,4 +1,4 @@
-addi $5, $0, 0b1111111111111111
-add $3, $0, $1
-add $4, $0, $2
+ldi $data, 0b1111111111111111
+mv $address_lo, $id_lo
+mv $address_hi, $id_hi
 sw
