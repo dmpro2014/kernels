@@ -5,29 +5,29 @@
 ; $13 -> near, y value
 ; $14 -> far, x value
 ; $15 -> far, y value
-;
-addi $12, $0, 30
-addi $13, $0, 20
-addi $14, $0, 40
-addi $15, $0, 50
-;
+
+ldi $12, 30
+ldi $13, 20
+ldi $14, 40
+ldi $15, 50
+
 srl $7, $2, 7 ; load y value
 sll $11, $1, 9 ; Load shifted hi value
 add $7, $7, $11 ; Stitch together hi and low
-;
-addi $8, $0, 63
+
+ldi $8, 63
 and $8, $8, $id_lo ; load x value
-addi $mask, $0, 0 ; Disable masking
-addi $lsu_data, $0, 0b0010100010010011 ; Set default color
-;
+ldi $mask, 0 ; Disable masking
+ldi $lsu_data, 0b0010100010010011 ; Set default color
+
 slt $mask, $8, $12 ; x < near
 ? slt $mask, $7, $13 ; y < near
-;
+
 ? slt $mask, $14, $8 ; far < x
 ? slt $mask, $15, $7 ; far < y
-;
-? addi $5, $0, 0b1111100000000000 ; red
-;
-add $address_hi, $0, $id_hi
-add $address_lo, $0, $id_lo
+
+? ldi $5, 0b1111100000000000 ; red
+
+mv $address_hi, $id_hi
+mv $address_lo, $id_lo
 sw
