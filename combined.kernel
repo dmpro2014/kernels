@@ -5,18 +5,13 @@ srl $8, $id_lo, 6 ; y value
 
 ldi $data, 0b0000011111111111 ; Default to red
 
-add $12, $0, $0 ; shadow mask - mask is write only
+mv $12, $0 ; shadow mask - mask is write only
 
 ldc $13, 10 ; Offset from edges
 sub $14, $14, $13 ; offset from opposite edges
 
 ; Draw left line of box
-sub $9, $7, $13 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $7, $13 ; equal
 
 slt $11, $13, $8
 and $10, $10, $11
@@ -27,12 +22,7 @@ and $10, $10, $11
 or $12, $12, $10
 
 ; Draw right line of box
-sub $9, $7, $14 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $7, $14 ; equal
 
 slt $11, $13, $8
 and $10, $10, $11
@@ -43,12 +33,7 @@ and $10, $10, $11
 or $12, $12, $10
 
 ; Draw upper line of box
-sub $9, $8, $13 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $8, $13 ; equal
 
 slt $11, $13, $7 ; Check x-offset
 and $10, $10, $11
@@ -59,12 +44,7 @@ and $10, $10, $11
 or $12, $12, $10
 
 ; Draw lower line of box
-sub $9, $8, $14 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $8, $14 ; equal
 
 slt $11, $13, $7 ; Check x-offset
 and $10, $10, $11
@@ -81,12 +61,7 @@ ldc $13, 11 ; Offset from edges
 sub $14, $14, $13 ; offset from opposite edges
 
 ; Draw left line of box
-sub $9, $7, $13 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $7, $13 ; equal
 
 slt $11, $13, $8
 and $10, $10, $11
@@ -97,12 +72,7 @@ and $10, $10, $11
 or $12, $12, $10
 
 ; Draw right line of box
-sub $9, $7, $14 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $7, $14 ; equal
 
 slt $11, $13, $8
 and $10, $10, $11
@@ -113,12 +83,7 @@ and $10, $10, $11
 or $12, $12, $10
 
 ; Draw upper line of box
-sub $9, $8, $13 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $8, $13 ; equal
 
 slt $11, $13, $7 ; Check x-offset
 and $10, $10, $11
@@ -129,12 +94,7 @@ and $10, $10, $11
 or $12, $12, $10
 
 ; Draw lower line of box
-sub $9, $8, $14 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $8, $14 ; equal
 
 slt $11, $13, $7 ; Check x-offset
 and $10, $10, $11
@@ -145,12 +105,7 @@ and $10, $10, $11
 or $12, $12, $10
 
 ; cross 1
-sub $9, $7, $8 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $7, $8 ; equal
 
 or $12, $12, $10
 
@@ -158,12 +113,7 @@ or $12, $12, $10
 addi $13, $0, 0b111111 ; 63 bitmask
 sub $14, $13, $8 ; negative y value
 
-sub $9, $14, $7 ; equal
-slt $10, $9, $0 ; diff less than zero
-slt $11, $0, $9 ; diff greater than zero
-or $10, $10, $11
-ldi $11, 1
-sub $10, $11, $10
+seq $10, $14, $7 ; equal
 
 or $12, $12, $10
 
